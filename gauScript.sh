@@ -20,11 +20,11 @@ fi
 # Asignar variables
 listaDominios="$1"
 fecha="$(date -Idate)"
-directorio="/gauDomains"
+directorio="gauDomains"
 
 
 # Verificar si los archivos existen
-if [ ! -f "listaDominios" ]; then
+if [ ! -f "$listaDominios" ]; then
   echo -e "\n${red}[+]${end}${green} Error: El archivo '$listaDominios' no existe.${end}"
   exit 1
 fi
@@ -40,8 +40,8 @@ else
 fi
 
 # Procesar la lista de dominios por GAU
-echo -e "\n${red}[+]${end}${green} Buscando...${end}"
-cat $listaDominios | gau --o /gauDomains/gauDomains${fecha}.txt
+echo -e "\n${red}[+]${end}${green} Buscando...\n${end}"
+cat $listaDominios | gau --o ${directorio}/gauDomains${fecha}.txt
 
 find . -type f .size 0 -delete
 
