@@ -16,14 +16,25 @@ if [ "$#" -ne 1 ]; then
   echo -e "\n${red}[+]${end}${green} Uso: $0 <lista de dominios>${end}"
   exit 1
 fi
-# Asignar argumentos a variables
+
+# Asignar variables
 listaDominios="$1"
 fecha="$(date -Idate)"
+directorio="/gauDomains"
+
 
 # Verificar si los archivos existen
 if [ ! -f "listaDominios" ]; then
   echo -e "\n${red}[+]${end}${green} Error: El archivo '$listaDominios' no existe.${end}"
   exit 1
+fi
+
+if [ -d "$directorio" ]; then
+    echo -e "\n${red}[+]${end}${green} El directorio $directorio existe.${end}"
+else
+    echo -e "\n${red}[+]${end}${green} El directorio $directorio no exite. Creandolo ... "
+    mkdir -p "$directorio"
+    echo -e "\n${red}[+]${end}${green} El directorio $directorio ya esta creado.${end}"
 fi
 
 # Procesar la lista de dominios por GAU
