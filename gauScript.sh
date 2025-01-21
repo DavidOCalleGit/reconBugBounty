@@ -41,9 +41,9 @@ fi
 
 # Procesar la lista de dominios por GAU
 echo -e "\n${red}[+]${end}${green} Buscando...\n${end}"
-cat $listaDominios | gau --o ${directorio}/gauDomains${fecha}.txt
+cat $listaDominios | gau --blacklist png,jpg,gif --subs --o ${directorio}/gauDomains${fecha}.txt
 
-find . -type f .size 0 -delete
+#find . -type f .size 0 -delete
 
 echo -e "\n${yellow}La busqueda ha finalizado, mira en gauDomains${fecha}.txt${end}"
 
