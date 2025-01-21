@@ -1,4 +1,4 @@
-#Este es un conjunto de scripts escritos en bash.
+# Este es un conjunto de scripts escritos en bash.
 - cname.sh > devuelve los cnames de los dominios.
 - filtroGrep.sh > dada una lista de subdominios podemos filtrar una cadena y lo salva en un archivo.
 - fusionar.sh > dados dos archivos los fusiona desechando las entradas duplicadas.
