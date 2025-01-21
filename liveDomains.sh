@@ -18,11 +18,11 @@ fi
 # Asignar variables
 listaDominios="$1"
 fecha="$(date -Idate)"
-directorio="/liveDomains"
+directorio="liveDomains"
 
 
 # Verificar si los archivos existen
-if [ ! -f "listaDominios" ]; then
+if [ ! -f "$listaDominios" ]; then
   echo -e "\n${red}[+]${end}${green} Error: El archivo '$listaDominios' no existe.${end}"
   exit 1
 fi
