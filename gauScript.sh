@@ -29,6 +29,8 @@ if [ ! -f "listaDominios" ]; then
   exit 1
 fi
 
+
+# Verificar si el directorio existe.
 if [ -d "$directorio" ]; then
     echo -e "\n${red}[+]${end}${green} El directorio $directorio existe.${end}"
 else
@@ -39,9 +41,9 @@ fi
 
 # Procesar la lista de dominios por GAU
 echo -e "\n${red}[+]${end}${green} Buscando...${end}"
-cat $listaDominios | gau --o gauDomains${fecha}.txt
+cat $listaDominios | gau --o /gauDomains/gauDomains${fecha}.txt
 
 find . -type f .size 0 -delete
 
-echo -e "\n${yellow}La busqueda ha finalizado, mira en gauDomains.txt${end}"
+echo -e "\n${yellow}La busqueda ha finalizado, mira en gauDomains${fecha}.txt${end}"
 
