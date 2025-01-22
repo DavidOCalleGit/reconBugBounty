@@ -52,7 +52,7 @@ cat alive$fecha.txt | gau -blacklist jpg,png,gif --subs | tee -a gauDir/endpoint
 echo -e "${green}\n[+] Busqueda de endpoints finalizada.${end}"
 echo -e "${green}[+] Resultados guardados en $directorio/gauDir/endpoints$fecha.txt${end}"
 
-# Busqueda en endpoints$fecha.txt de posibles urls vulnerable a XSS, IDOR, SQLi, RCE, LFI con gf(Tomnomno).
+# Busqueda en endpoints$fecha.txt de posibles urls vulnerable a XSS, IDOR, SQLi, RCE, LFI con gf(Tomnomnom).
 mkdir -p gfDir
 echo -e "\n${yellow}[*] Buscando posibles vulnerabilidades en los endpoints...${end}"
 cat gauDir/endpoints$fecha.txt | gf xss | tee -a gfDir/xss$fecha.txt
