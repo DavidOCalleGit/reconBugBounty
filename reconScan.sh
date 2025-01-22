@@ -16,6 +16,7 @@ if [ $# -ne 2 ]; then
     echo -e "${red}[-] Uso: $0 <dominio> <programa>${end}"
     exit 1
 fi
+
 # Asignar variables
 dominios="$1"
 programa="$2"
@@ -98,3 +99,10 @@ mkdir jsDir
 cat alive$fecha.txt | subjs | tee -a jsDir/jsEndpoints$fecha.txt
 echo -e "${green}[+] Busqueda de endpoints js finalizada.${end}"
 echo -e "${green}[+] Resultados guardados en $directorio/jsDir/jsEndpoints$fecha.txt${end}"
+
+# Con la lista de endpoints js, se buscan parametros en los mismos con paramspider y linkfinder
+echo -e "\n${yellow}[*] Buscando parametros en los endpoints js...${end}"
+mkdir -p jsDir/params
+cat jsDir/jsEndpoints$fecha.txt | paramspider -d | tee -a jsDir/params/params$fecha.txt
+cat jsDir/jsEndpoints$fecha.txt | linkfinder -i | tee -a jsDir/params/links$fecha.txt
+echo -e "${green}[+] Parametros encontrados en los endpoints js guardados en $directorio/jsDir/params${end}"
