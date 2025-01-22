@@ -13,7 +13,7 @@ end='\e[0m'
 
 # Verifica que se le han pasado los parametros necesarios.
 if [ $# -ne 2 ]; then
-    echo -e "${red}[-] Uso: $0 <dominio> <programa>${end}"
+    echo -e "${red}[-] Uso: $0 <dominios> <programa>${end}"
     exit 1
 fi
 
