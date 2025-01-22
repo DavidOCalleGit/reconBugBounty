@@ -23,8 +23,20 @@ if [ ! -f "$listaDominios" ]; then
   exit 1
 fi
 
-# Procesar la lista de subdominos para listas los cnames
+# Crear directorio para guardar los resultados de nombre cname
+mkdir -p "cname"
 
-echo -e "\n${red}[+]${end}${green} Buscando...${end}"
+# Dada una lista de dominios, obtener el nombre CNAME.
+while IFS= read -r dominio; do
+  # Obtener el nombre CNAME
+  cname="$(dig +nocmd +short "$dominio" cname +noall +answer)"
+  # Guardar el resultado en un archivo, pero solo el cname y se guarda el subdominio poniendo que no exite el cname.
+  if [ -n "$cname" ]; then
+    echo "$dominio: $cname" >> "cname/cname$fecha.txt"
+    echo -e "${green}[+]${end}${yellow} $dominio: $cname${end}"
+  else
+    echo "$dominio: No existe CNAME" >> "cname/cname$fecha.txt"
+    echo -e "${green}[+]${end}${yellow} $dominio:${end} ${red}No existe CNAME${end}"
+  fi
 
-cat $listaDominios | xargs -n1 -P500 bash -c 'j=$0; url="${j}"; dig +nocmd $url cname +noall +answer | tee -a CNAME.txt'
+done < "$listaDominios"

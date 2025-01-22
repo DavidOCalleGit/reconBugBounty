@@ -45,9 +45,22 @@ cat subdomains$fecha.txt | httpx -sc -cname | tee -a alive$fecha.txt
 echo -e "${green}[+] Comprobación de dominios finalizada.${end}"
 echo -e "${green}[+] Resultados guardados en $directorio/alive$fecha.txt${end}"
 
+# Filtrado por Status Code
+echo -e "\n${yellow}[*] Filtrando por Status Code...${end}"
+mkdir -p statusCodes
+cat alive$fecha.txt | grep 200 | tee -a statusCodes/200$fecha.txt
+cat alive$fecha.txt | grep 301 | tee -a statusCodes/301$fecha.txt
+cat alive$fecha.txt | grep 302 | tee -a statusCodes/302$fecha.txt
+cat alive$fecha.txt | grep 403 | tee -a statusCodes/403$fecha.txt
+cat alive$fecha.txt | grep 404 | tee -a statusCodes/404$fecha.txt
+cat alive$fecha.txt | grep 500 | tee -a statusCodes/500$fecha.txt
+echo -e "${green}[+] Filtrado por Status Code finalizado.${end}"
+echo -e "${green}[+] Resultados guardados en $directorio/statusCodes${end}"
+
+
 # Realizar la busqueda en getallurls(gau) de endpoints en los dominios activos.
 echo -e "\n${yellow}[*] Realizando busqueda de endpoints...${end}"
-mkdir gauDir
+mkdir -p gauDir
 cat alive$fecha.txt | gau -blacklist jpg,png,gif --subs | tee -a gauDir/endpoints$fecha.txt
 echo -e "${green}\n[+] Busqueda de endpoints finalizada.${end}"
 echo -e "${green}[+] Resultados guardados en $directorio/gauDir/endpoints$fecha.txt${end}"
