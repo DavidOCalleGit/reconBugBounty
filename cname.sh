@@ -18,7 +18,7 @@ listaDominios="$1"
 fecha="$(date -Idate)"
 
 # Verificar si los archivos existen
-if [ ! -f "listaDominios" ]; then
+if [ ! -f "$listaDominios" ]; then
   echo -e "\n${red}[+]${end}${green} Error: El archivo '$listaDominios' no existe.${end}"
   exit 1
 fi
