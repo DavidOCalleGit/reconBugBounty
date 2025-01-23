@@ -5,3 +5,4 @@
 - gauScript.sh > dada una lista de subdominios busca en los historicos de internet con gau
 - liveDomains.sh > dada una lista de subdominios comprueba si esta activos con su status code y cname
 - massiveScopeting.sh > dada una lista de subdominios los envía a BurpSuite
+- script **reconScan.sh** > Script completo de reconocimiento, en mejora constante.
