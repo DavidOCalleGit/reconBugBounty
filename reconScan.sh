@@ -11,16 +11,32 @@ red='\033[0;31m'
 yellow='\033[0;33m'
 end='\e[0m'
 
-# Verifica que se le han pasado los parametros necesarios.
-if [ $# -ne 2 ]; then
-    echo -e "${red}[-] Uso: $0 <dominios> <programa>${end}"
+# Asignar variables
+dominios=""
+programa=""
+fecha=$(date -I)
+
+# Parse flags
+while getopts "d:p:" opt; do
+    case ${opt} in
+        d )
+            dominios=$OPTARG
+            ;;
+        p )
+            programa=$OPTARG
+            ;;
+        \? )
+            echo "Usage: cmd [-d] dominios [-p] programa"
+            exit 1
+            ;;
+    esac
+done
+
+# Check if required arguments are provided
+if [ -z "$dominios" ] || [ -z "$programa" ]; then
+    echo "Usage: cmd [-d] dominios [-p] programa"
     exit 1
 fi
-
-# Asignar variables
-dominios="$1"
-programa="$2"
-fecha=$(date -I)
 
 # Crear directorio para guardar los resultados
 if [ ! -d "$programa" ]; then
