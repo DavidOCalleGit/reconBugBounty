@@ -53,7 +53,7 @@ get_domain() {
     cat $dominios | assetfinder --subs-only $dominios | tee -a assetfinder$fecha.txt
     # Fusiona y desecha los duplicados
     cat *.txt | sort -u > subdomains$fecha.txt
-    find . -type f -not -name "subdomains$fecha.txt" -delete
+    find $programa/ -type f -not -name "subdomains$fecha.txt" -delete
     echo -e "${green}\n[+] Recon de subdominios finalizado.${end}"
     echo -e "${green}[+] Resultados guardados en $directorio/subdomains$fecha.txt${end}"
 }
