@@ -53,7 +53,7 @@ get_domain() {
     cat $dominios | assetfinder --subs-only $dominios | tee -a assetfinder$fecha.txt
     # Fusiona y desecha los duplicados
     cat *.txt | sort -u > subdomains$fecha.txt
-    find $programa/ -type f -not -name "subdomains$fecha.txt" -delete
+    #find $programa/ -type f -not -name "subdomains$fecha.txt" -delete
     echo -e "${green}\n[+] Recon de subdominios finalizado.${end}"
     echo -e "${green}[+] Resultados guardados en $directorio/subdomains$fecha.txt${end}"
 }
@@ -71,12 +71,12 @@ alive_domains() {
 statusCode() {
     echo -e "\n${yellow}[*] Filtrando por Status Code...${end}"
     mkdir -p statusCodes
-    cat aliveAll$fecha.txt | grep 200 | tee -a statusCodes/200$fecha.txt
-    cat aliveAll$fecha.txt | grep 301 | tee -a statusCodes/301$fecha.txt
-    cat aliveAll$fecha.txt | grep 302 | tee -a statusCodes/302$fecha.txt
-    cat aliveAll$fecha.txt | grep 403 | tee -a statusCodes/403$fecha.txt
-    cat aliveAll$fecha.txt | grep 404 | tee -a statusCodes/404$fecha.txt
-    cat aliveAll$fecha.txt | grep 500 | tee -a statusCodes/500$fecha.txt
+    cat alive$fecha.txt | grep 200 | tee -a statusCodes/200$fecha.txt
+    cat alive$fecha.txt | grep 301 | tee -a statusCodes/301$fecha.txt
+    cat alive$fecha.txt | grep 302 | tee -a statusCodes/302$fecha.txt
+    cat alive$fecha.txt | grep 403 | tee -a statusCodes/403$fecha.txt
+    cat alive$fecha.txt | grep 404 | tee -a statusCodes/404$fecha.txt
+    cat alive$fecha.txt | grep 500 | tee -a statusCodes/500$fecha.txt
     echo -e "${green}[+] Filtrado por Status Code finalizado.${end}"
     echo -e "${green}[+] Resultados guardados en $directorio/statusCodes${end}"
 }
